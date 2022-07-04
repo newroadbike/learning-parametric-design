@@ -1,76 +1,98 @@
 
-let rbig = 110;
-let rmedium = 85;
-let rsmall = 60;
-
+let rbig = 23;
+let rmedium = 16;
+let rsmall = 12;
+let rmini = 9;
 
 
 function preload(){
   // preload assets
 }
-const sketchWidth = 2600;
-const sketchHeight = 3500;
-const padding = 100
-// const abstand = rbig + 2 * padding;
-const abstandx = rbig * 3.7;
-const abstandy = rsmall * 1.8;
+const sketchWidth = 800;
+const sketchHeight = 720;
 
+const abstandx = rbig * 2.6;
+const abstandy = rsmall * 1.9;
 
-const columns = Math.floor(sketchWidth / abstandx);
-const rows = Math.floor(sketchHeight / abstandx);
 
 function setup() {
 createCanvas(sketchWidth, sketchHeight);
-
 }
+
 
 function draw() {
-background (155);
-strokeWeight (5);
+background (255);
+// strokeWeight (2);
 
-// rect (350, 60, 2100, 3400);
+// unterschiedliche Anzahl Tage je Monat
+const monthDays = [31,29,31,30,31,30,31,31,30,31,30,31];
+let spaceI = 0
+let spaceII = 0
+let spaceIII = 0
 
 
-for(let x = 1; x < 7; x += 1){
-    for(let y = 1; y < 32; y += 1){
+for(let x = 1; x < 13; x += 1){
+  if (x === 4 || x === 7 || x === 10) {
+    spaceI = 30
 
-
-    //Fünfer dickerer Stroke
-    if (y === 5 || y === 15 || y === 25){
-      strokeWeight (12);
-    } else { strokeWeight (6);    
+    if (x === 7) {
+      spaceII = 5
     }
 
-    
-    // alle anderen Einer
-    circle(abstandx * x, abstandy * y, rsmall);
- 
-
-    //Zehner + einen Ring
-    if (y === 10 || y === 20 || y === 30){
-      circle(abstandx * x, abstandy * y, rbig);
+    if (x === 10) {
+      spaceIII = 30
     }
-    if (y === 20 || y === 30){
-      circle(abstandx * x, abstandy * y, rmedium);
-    }
-    if (y === 30){
-      circle(abstandx * x, abstandy * y, rsmall);
-    } 
-    // if (x === 1 && y === 31){
-    //   //   fill(255);
-    //   //   strokeWeight(6);
-    //   //   stroke(255);
-    //     circle(abstandx * x, abstandy * y, rmedium);
-
-
   }
-  }
-  // if (x === 1 && y === 31){
-  //   fill(255);
-  //   strokeWeight(6);
-  //   stroke(255);
-  //   circle(abstandx * x, abstandy * y, rmedium);
 
+
+for(let y = 1; y <= monthDays[x-1]; y += 1){
+
+// normale Einer ausgefüllen
+if (y%5 !== 0){
+  fill(255);
+  }
+
+// Fünfer ausfüllen
+if (y === 5 || y === 15 || y === 25){
+  fill(0);
 }
 
-// }
+// Fünfer dickerer Stroke
+if (y === 5 || y === 15 || y === 25){
+  strokeWeight (2.8);
+    } else { strokeWeight (1.5);    
+    
+  }
+ 
+// alle anderen Einer
+  circle(abstandx * x + spaceI + spaceII + spaceIII, abstandy * y, rsmall);
+    fill(255);
+
+// Zehner + einen Ring
+  if (y === 10 || y === 20 || y === 30){
+    circle(abstandx * x + spaceI + spaceII + spaceIII, abstandy * y, rbig);
+    }
+
+  if (y === 20 || y === 30){
+    circle(abstandx * x + spaceI + spaceII + spaceIII, abstandy * y, rmedium);
+    }
+
+  if (y === 30){
+    circle(abstandx * x + spaceI + spaceII + spaceIII, abstandy * y, rmini);
+    } 
+
+// Schaltjahr 29. Februar
+  if (x === 2 && y === 29){
+    drawingContext.setLineDash([1.5,3]);
+    circle(abstandx * x + spaceI + spaceII + spaceIII, abstandy * y, rsmall);
+    drawingContext.setLineDash([]);
+   }
+
+  }
+  }
+
+  // save ();
+  noLoop();
+
+
+}
