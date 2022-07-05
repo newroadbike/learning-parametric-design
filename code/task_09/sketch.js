@@ -8,7 +8,7 @@ let rmini = 9;
 function preload(){
   // preload assets
 }
-const sketchWidth = 800;
+const sketchWidth = 890;
 const sketchHeight = 720;
 
 const abstandx = rbig * 2.6;
@@ -36,7 +36,7 @@ for(let x = 1; x < 13; x += 1){
     spaceI = 30
 
     if (x === 7) {
-      spaceII = 5
+      spaceII = 60
     }
 
     if (x === 10) {
@@ -52,18 +52,50 @@ if (y%5 !== 0){
   fill(255);
   }
 
+// unterschiedliche Farben je drei Monate
+ if (x <= 3){
+  stroke(0, 59, 95);
+ } 
+
+ if (x >= 4){
+  stroke (27, 127, 88);
+ }
+
+ if (x >= 7){
+  stroke(222, 179, 35);
+ }
+
+ if (x >= 10){
+  stroke(103, 81, 136);
+ }
+
+
 // Fünfer ausfüllen
-if (y === 5 || y === 15 || y === 25){
-  fill(0);
+if (y === 5 && x <= 3 || y === 15 && x <= 3 || y === 25 && x <= 3){
+  fill(0, 59, 95);
 }
 
-// Fünfer dickerer Stroke
-if (y === 5 || y === 15 || y === 25){
-  strokeWeight (2.8);
-    } else { strokeWeight (1.5);    
-    
-  }
+if (y === 5 && x >= 4 || y === 15 && x >= 4 || y === 25 && x >= 4){
+  fill(27, 127, 88);
+}
+
+if (y === 5 && x >= 7 || y === 15 && x >= 7 || y === 25 && x >= 7){
+  fill(222, 179, 35);
+}
+
+if (y === 5 && x >= 10 || y === 15 && x >= 10 || y === 25 && x >= 10){
+  fill(103, 81, 136);
+}
+
+
+// // Fünfer dickerer Stroke
+// if (y === 5 || y === 15 || y === 25){
+//   strokeWeight (2.8);
+//     } else { strokeWeight (1.8);     
+//   }
  
+strokeWeight (2);
+
 // alle anderen Einer
   circle(abstandx * x + spaceI + spaceII + spaceIII, abstandy * y, rsmall);
     fill(255);
