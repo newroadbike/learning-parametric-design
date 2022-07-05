@@ -16,7 +16,6 @@ function setup() {
 createCanvas(sketchWidth, sketchHeight);
 frameRate(1);
 
-
 sel1 = createSelect();
 sel1.position(30, 500);
 sel1.option('roboto');
@@ -37,13 +36,10 @@ sel3.option('roboto');
 sel3.option('acuta');
 sel3.option('lust');
 sel3.option('jonesy');
-
 }
-
 
 function draw() {
 background (255);
-
 
 for (let r = 0; r < table.getRowCount(); r += 1) {
 
@@ -55,7 +51,7 @@ for (let r = 0; r < table.getRowCount(); r += 1) {
 
   const freunde = table.getString(r, "FREUNDE");
   const frx = 50;
-  const fry = r * 30 + 50;
+  const fry = r * 35 + 50;
   text(freunde, frx, fry);
 
 // FAMILIE
@@ -66,7 +62,7 @@ for (let r = 0; r < table.getRowCount(); r += 1) {
 
   const familie = table.getString(r, "FAMILIE");
   const fax = 200;
-  const fay = r * 30 + 50;
+  const fay = r * 35 + 50;
   text(familie, fax, fay);
 
 //NEUE LEUTE
@@ -77,13 +73,12 @@ else if (sel3.value() === 'jonesy') { textFont('Jonesy'); textSize(10); }
 
   const neueLeute = table.getString(r, "NEUELEUTE");
   const nlx = 350;
-  const nly = r * 30 + 50;
+  const nly = r * 35 + 50;
   text(neueLeute, nlx, nly);
 
   }
-
-// save();
-// noLoop();
-
 }
 
+// function keyReleased() {
+//   save();
+//  }
